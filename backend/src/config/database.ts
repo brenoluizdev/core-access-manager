@@ -1,14 +1,20 @@
 import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME || '',
-  process.env.DB_USER || '',
-  process.env.DB_PASSWORD || '',
-  {
-    host: process.env.DB_HOST || 'localhost',
-    dialect: 'postgres',
-    logging: false,
-  }
-);
+const {
+  DB_NAME,
+  DB_USER,
+  DB_PASSWORD,
+  DB_HOST,
+} = process.env;
+
+if (!DB_NAME || !DB_USER || !DB_PASSWORD) {
+  throw new Error('❌ Variáveis de ambiente do banco não definidas');
+}
+
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+  host: DB_HOST || 'localhost',
+  dialect: 'postgres',
+  logging: false,
+});
 
 export default sequelize;
