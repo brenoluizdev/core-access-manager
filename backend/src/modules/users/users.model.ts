@@ -1,10 +1,19 @@
-import { DataTypes, Model } from 'sequelize';
+import {
+  Model,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+} from 'sequelize';
 import sequelize from '../../config/database';
 
-export class User extends Model {
-  public id!: number;
-  public name!: string;
-  public email!: string;
+export class User extends Model<
+  InferAttributes<User>,
+  InferCreationAttributes<User>
+> {
+  declare id: CreationOptional<number>;
+  declare name: string;
+  declare email: string;
 }
 
 User.init(
@@ -16,9 +25,11 @@ User.init(
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
       unique: true,
     },
   },
