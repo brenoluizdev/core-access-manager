@@ -10,5 +10,5 @@ if (!process.env.DB_NAME || !process.env.DB_USER || !process.env.DB_PASSWORD) {
 }
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port http://localhost:${PORT}/api/`);
 });
