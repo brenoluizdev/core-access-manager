@@ -14,6 +14,7 @@ export class User extends Model<
   declare id: CreationOptional<number>;
   declare name: string;
   declare email: string;
+  declare password: string;
 }
 
 User.init(
@@ -31,6 +32,10 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {
