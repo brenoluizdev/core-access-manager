@@ -1,9 +1,15 @@
 import { Router } from 'express';
 
-const router = Router();
+import authRoutes from '../modules/auth/auth.routes';
+import usersRoutes from '../modules/users/users.routes';
 
-router.get('/', (req, res) => {
-  res.send('Hello, World!');
+const routes = Router();
+
+routes.get('/health', (_req, res) => {
+  res.status(200).json({ status: 'ok', uptime: process.uptime() });
 });
 
-export default router;
+routes.use('/auth', authRoutes);
+routes.use('/users', usersRoutes);
+
+export default routes;

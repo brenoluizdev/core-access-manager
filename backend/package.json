@@ -1,27 +1,44 @@
 {
-  "name": "backend",
+  "name": "core-access-manager-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/index.ts",
+  "description": "API de gerenciamento de usuários com autenticação JWT, controle de permissões e arquitetura em camadas.",
+  "main": "dist/index.js",
+  "type": "commonjs",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
-  "keywords": [],
+  "keywords": [
+    "express",
+    "typescript",
+    "jwt",
+    "rbac",
+    "clean-architecture",
+    "sqlite"
+  ],
   "author": "brenoluizdev",
-  "license": "ISC",
-  "type": "commonjs",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.5.0"
+  },
   "dependencies": {
     "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "sequelize": "^6.37.8"
+    "jsonwebtoken": "^9.0.3"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.6.0",
-    "nodemon": "^3.1.14",
+    "@types/supertest": "^6.0.3",
+    "@vitest/coverage-v8": "^3.2.4",
+    "supertest": "^7.1.1",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^3.2.4"
   }
 }

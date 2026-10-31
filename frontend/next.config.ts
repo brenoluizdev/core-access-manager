@@ -1,7 +1,11 @@
-import type { NextConfig } from "next";
+﻿import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async rewrites() {
+    const api = process.env.API_URL ?? "http://localhost:3333";
+
+    return [{ source: "/api/:path*", destination: `${api}/api/:path*` }];
+  },
 };
 
 export default nextConfig;
