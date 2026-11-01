@@ -47,6 +47,7 @@ testáveis, erros padronizados e validação na borda.
 | Validação | Validadores próprios, tipados, sem dependência externa |
 | Testes | Vitest + Supertest + cobertura V8 |
 | Web | Next.js 16 (App Router), React 19, Tailwind CSS 4 |
+| Infra | Docker multi-stage + Docker Compose (volume persistente) |
 | CI | GitHub Actions (matriz Node 22/24 + lint/build do frontend) |
 
 ## Arquitetura
@@ -120,6 +121,24 @@ então não há configuração de CORS. Para apontar para outra API, defina `API
 
 > O **primeiro usuário cadastrado vira ADMIN** automaticamente. Os seguintes entram
 > como `USER` e só podem ser promovidos por um administrador.
+
+### Docker (API + painel)
+
+Sobe os dois serviços com um comando, sem instalar Node:
+
+```bash
+cp .env.example .env   # troque o JWT_SECRET antes de expor o serviço
+docker compose up --build
+```
+
+- Painel: <http://localhost:3000>
+- API: <http://localhost:3333/api>
+- O SQLite fica no volume `api-data`, então os dados sobrevivem a `docker compose down`.
+
+A imagem da API é multi-stage, roda como usuário `node` e tem healthcheck em
+`/api/health`. A do painel usa o output `standalone` do Next, o que dispensa
+`node_modules` na imagem final. A URL da API é resolvida no build (build arg
+`API_URL`, padrão `http://api:3333`).
 
 ## API
 
