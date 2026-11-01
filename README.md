@@ -4,6 +4,7 @@
 ![Testes](https://img.shields.io/badge/testes-45-2ea043)
 ![Cobertura](https://img.shields.io/badge/cobertura-~90%25-2ea043)
 ![Node](https://img.shields.io/badge/node-%3E%3D22.5-339933?logo=node.js&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-multi--stage-2496ED?logo=docker&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)
 
 Sistema fullstack de gerenciamento de usuários com autenticação JWT, controle de
