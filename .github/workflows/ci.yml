@@ -72,3 +72,15 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  docker:
+    name: Docker (build das imagens)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build da API
+        run: docker build -t core-access-manager-api ./backend
+
+      - name: Build do painel
+        run: docker build -t core-access-manager-web ./frontend
